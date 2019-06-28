@@ -1,0 +1,119 @@
+#info {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    height: 10vh;
+    width: 100vw;
+    font-family: 'Minecraft';
+    background: url("static/img/stone.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+    color: white;
+}
+h2{
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 3vw;
+}
+#status {
+    padding-left: 2vw;
+}
+#round{
+    padding-right: 2vw;
+    display: flex;
+    text-align: center;
+    float: right;
+}
+
+#root {
+    /* top: 10vh; */
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    background: none;
+}
+
+* {
+    font-family: 'Minecraft';
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#alert {
+    z-index: 997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.70;
+    text-align: center;
+}
+
+input {
+    border: 3px solid white;
+    display: flex;
+    margin: 4vw;
+    height: 12vh;
+    background: gray;
+    background-size: cover;
+    background-repeat: repeat-x;
+    font-size: 2vw;
+    color: white;
+    text-align: center;
+}
+
+#inneralert {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    z-index: 998;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 50vw;
+    height: 30vw;
+    border: 3px solid white;
+    border-radius: 20px;
+    background: gray;
+}
+#secs{
+    z-index: 999;
+    position: absolute;
+    top: 10%;
+    color: black;
+    height: 2.5vh;
+    width: 3vw;
+}
+
+.b {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 70%;
+    height: 3.5vw;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 3vw;
+    font-size: 2vw;
+    color: white;
+    background: gray;
+}
