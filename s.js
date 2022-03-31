@@ -49,7 +49,7 @@ var server = http.createServer(function (req, res) {
             }
             else {
                 res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.write("<h1>404 - brak takiej strony</h1>");
+                res.write("<h1>404 :( </h1>");
                 res.end();
             }
             break;
@@ -125,5 +125,5 @@ function servResponse(req, res) {
 
 var port = 80;
 server.listen(port, function () {
-    console.log("[P:" + port + "] Dzieńdobry")
+    console.log("[P:" + port + "] Minecraft Checkers Online")
 });

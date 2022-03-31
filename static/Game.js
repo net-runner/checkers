@@ -78,7 +78,7 @@ class Game {
         game.orbitControl.center.set(418.3993394563722, 72.45584596772032, 526.6548977962368)
         game.orbitControl.target.set(418.3993394563722, 71.45584596772032, 526.6548977962368)
         game.camera.lookAt(450, 282, 450)
-        game.scene.add(game.axes)
+        // game.scene.add(game.axes)
 
         game.render()
         game.onResizeHandle()

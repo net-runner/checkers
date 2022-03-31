@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     game.preload()
     game.createBoard()
-    game.orbitControls()
+    // game.orbitControls()
     game.handleMouseDown()
 })
 
