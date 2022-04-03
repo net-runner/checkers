@@ -1,5 +1,6 @@
 console.log("NET ON")
 
+const url = "http://localhost:80"
 class Net {
     constructor() {
         this.a = 100 // użycie zmiennych
@@ -10,7 +11,7 @@ class Net {
 
     handleData() {
         $.ajax({
-            url: "/",
+            url: "/:80",
             data: "load",
             type: "POST",
             success: function (data) {
@@ -25,7 +26,7 @@ class Net {
     }
     reset(target) {
         $.ajax({
-            url: "/",
+            url,
             data: target,
             type: "POST",
             success: function (data) {
@@ -39,7 +40,7 @@ class Net {
     }
     sendData(target) {
         $.ajax({
-            url: "/",
+            url,
             data: target,
             type: "POST",
             success: function (data) {
@@ -75,7 +76,7 @@ class Net {
     }
     query_player() {
         $.ajax({
-            url: "/",
+            url,
             data: JSON.stringify({ "action": "query_player" }),
             type: "POST",
             success: function (data) {
@@ -100,7 +101,7 @@ class Net {
     }
     query_move() {
         $.ajax({
-            url: "/",
+            url,
             data: JSON.stringify({ "action": "query_move" }),
             type: "POST",
             success: function (data) {
@@ -144,7 +145,7 @@ class Net {
     }
     send_move(move) {
         $.ajax({
-            url: "/",
+            url,
             data: JSON.stringify({ "action": "send_move", "move": move }),
             type: "POST",
             success: function (data) {

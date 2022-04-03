@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('./fonts/MinecraftTen-VGORe.ttf');
+}
+
 #info {
     display: flex;
     position: absolute;
@@ -7,21 +12,29 @@
     height: 10vh;
     width: 100vw;
     font-family: 'Minecraft';
-    background: url("static/img/stone.png");
+    background: url("./img/stone.png");
     background-size: contain;
     background-repeat: repeat-x;
     color: white;
 }
-h2{
+
+h2 {
     color: white;
     text-align: center;
     margin: 0 auto;
     font-size: 3vw;
 }
+
 #status {
+    margin: auto;
     padding-left: 2vw;
+    transform: translateY(-7px);
+    font-weight: 100;
+    font-size: 3rem;
+    line-height: 40px;
 }
-#round{
+
+#round {
     padding-right: 2vw;
     display: flex;
     text-align: center;
@@ -62,12 +75,10 @@ body {
 }
 
 input {
-    border: 3px solid white;
     display: flex;
     margin: 4vw;
     height: 12vh;
-    background: gray;
-    background-size: cover;
+    background: url("img/stone3.jpg");
     background-repeat: repeat-x;
     font-size: 2vw;
     color: white;
@@ -89,9 +100,17 @@ input {
     height: 30vw;
     border: 3px solid white;
     border-radius: 20px;
-    background: gray;
+    background: url("img/stone4.jpg");
 }
-#secs{
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+#secs {
     z-index: 999;
     position: absolute;
     top: 10%;
@@ -106,14 +125,13 @@ input {
     justify-content: center;
     align-content: center;
     align-items: center;
-    width: 70%;
-    height: 3.5vw;
-    border: 2px solid white;
+    height: 12.5vw;
+    width: 12.5vw;
     border-radius: 10px;
-    font-weight: bold;
+    letter-spacing: 5px;
     margin: 0 auto;
     margin-bottom: 3vw;
     font-size: 2vw;
     color: white;
-    background: gray;
+    background: url("img/stone3.jpg");
 }

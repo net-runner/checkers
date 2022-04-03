@@ -16,22 +16,22 @@ class Game {
         this.square_material_1 = new THREE.MeshBasicMaterial({
             shininess: 50,
             side: THREE.DoubleSide,
-            map: new THREE.TextureLoader().load('/static/img/b.png')
+            map: new THREE.TextureLoader().load('./img/b.png')
         });
         this.square_material_2 = new THREE.MeshBasicMaterial({
             shininess: 50,
             side: THREE.DoubleSide,
-            map: new THREE.TextureLoader().load('/static/img/dirt.jpg')
+            map: new THREE.TextureLoader().load('./img/dirt.jpg')
         });
         this.cylinder_material_1 = new THREE.MeshBasicMaterial({
             shininess: 50,
             side: THREE.DoubleSide,
-            map: new THREE.TextureLoader().load('/static/img/c1.png')
+            map: new THREE.TextureLoader().load('./img/c1.png')
         });
         this.cylinder_material_2 = new THREE.MeshBasicMaterial({
             shininess: 50,
             side: THREE.DoubleSide,
-            map: new THREE.TextureLoader().load('/static/img/c2.png')
+            map: new THREE.TextureLoader().load('./img/c2.png')
         });
         this.square_geo = new THREE.BoxGeometry(50, 50, 50);
         this.cylinder_geo = new THREE.CylinderGeometry(25, 25, 12.5, 32);
@@ -95,6 +95,7 @@ class Game {
                     if (game.cylinders[i][j] == 2) tile = new Pawn(game.cylinder_geo, game.cylinder_material_2), tile.sname = "p1";
 
                     tile.position.set(x, y, z)
+                    TweenMax.to(tile.position, 1, { x: x + 20, y: y + 20, z: z + 20, ease: Power4.easeInOut })
                     tile.boardPos = i + "x" + j
                     tile.name = i + "x" + j
                     tile.isSuper = false

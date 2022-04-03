@@ -11,15 +11,18 @@ class Ui {
         alertbackground.setAttribute("id", "alert")
         alertinner.setAttribute("id", "inneralert")
         let bok = document.createElement("button")
+        let row = document.createElement("div")
         bok.id = "b1"
         alertinner.appendChild(input)
-        alertinner.appendChild(bok)
+        alertinner.appendChild(row)
+        row.appendChild(bok)
+        row.classList.add("row")
         bok.classList.add("b")
-        bok.innerText = "LOGIN"
+        bok.innerText = "PLAY"
         input.id = "ide"
         let bok2 = document.createElement("button")
         bok2.id = "b2"
-        alertinner.appendChild(bok2)
+        row.appendChild(bok2)
         bok2.classList.add("b")
         bok2.innerText = "RESET"
         document.body.appendChild(alertbackground)
