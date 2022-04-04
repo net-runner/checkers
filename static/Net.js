@@ -5,14 +5,13 @@ class Net {
     socket;
     constructor() {
         //this.handleData()
-        this.socket = new WebSocket("ws://js-checkers.herokuapp.com/connect")
         // this.sendData()
 
     }
 
     handleData() {
         $.ajax({
-            url: "/:80",
+            url,
             data: "load",
             type: "POST",
             success: function (data) {
