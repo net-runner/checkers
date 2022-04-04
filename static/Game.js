@@ -70,7 +70,7 @@ class Game {
         // game.orbitControl.autoRotate = true;
         $("#root").append(game.renderer.domElement);
 
-        game.renderer.setClearColor(0xffffff, 1)
+        game.renderer.setClearColor(0x121212, 1)
         game.renderer.setSize($("#root").width(), $("#root").height());
 
         game.camera.position.set(game.x, game.y, game.z)
@@ -95,7 +95,7 @@ class Game {
                     if (game.cylinders[i][j] == 2) tile = new Pawn(game.cylinder_geo, game.cylinder_material_2), tile.sname = "p1";
 
                     tile.position.set(x, y, z)
-                    TweenMax.to(tile.position, 1, { x: x + 20, y: y + 20, z: z + 20, ease: Power4.easeInOut })
+                    TweenMax.from(tile.position, 1, { y: y - 30, duration: 2, ease: Power4.easeInOut, stagger: 0.1 })
                     tile.boardPos = i + "x" + j
                     tile.name = i + "x" + j
                     tile.isSuper = false
@@ -123,6 +123,7 @@ class Game {
                     game.boardtiles.push(tile)
                 }
                 tile.position.set(x, y, z)
+                TweenMax.from(tile.position, 1, { y: y + 20, stagger: 0.1, duration: 1.5 })
                 game.scene.add(tile)
             }
         }
@@ -206,25 +207,32 @@ class Game {
         })
     }
     checkforjumpANDkill(player, x, y, target) {
+        let toKill;
         if (player == 0) {
             if (target.boardPos[2] == (y - 2) && game.scene.getObjectByName((x + 1) + "x" + (y - 1), true) && game.scene.getObjectByName((x + 1) + "x" + (y - 1), true).sname == "p2") {
                 game.move(target, 1, game.scene.getObjectByName((x + 1) + "x" + (y - 1), true))
-                game.scene.remove(game.scene.getObjectByName((x + 1) + "x" + (y - 1), true))
+                toKill = game.scene.getObjectByName((x + 1) + "x" + (y - 1), true)
             }
             else if (target.boardPos[2] == (y + 2) && game.scene.getObjectByName((x + 1) + "x" + (y + 1), true) && game.scene.getObjectByName((x + 1) + "x" + (y + 1), true).sname == "p2") {
                 game.move(target, 1, game.scene.getObjectByName((x + 1) + "x" + (y + 1), true))
-                game.scene.remove(game.scene.getObjectByName((x + 1) + "x" + (y + 1), true))
+                toKill = game.scene.getObjectByName((x + 1) + "x" + (y + 1), true)
             }
         } else {
             if (target.boardPos[2] == (y - 2) && game.scene.getObjectByName((x - 1) + "x" + (y - 1), true) && game.scene.getObjectByName((x - 1) + "x" + (y - 1), true).sname == "p1") {
                 game.move(target, 1, game.scene.getObjectByName((x - 1) + "x" + (y - 1), true))
-                game.scene.remove(game.scene.getObjectByName((x - 1) + "x" + (y - 1), true))
+                toKill = game.scene.getObjectByName((x - 1) + "x" + (y - 1), true)
             }
             else if (target.boardPos[2] == (y + 2) && game.scene.getObjectByName((x - 1) + "x" + (y + 1), true) && game.scene.getObjectByName((x - 1) + "x" + (y + 1), true).sname == "p1") {
                 game.move(target, 1, game.scene.getObjectByName((x - 1) + "x" + (y + 1), true))
-                game.scene.remove(game.scene.getObjectByName((x - 1) + "x" + (y + 1), true))
+                toKill = game.scene.getObjectByName((x - 1) + "x" + (y + 1), true)
+
             }
         }
+        gsap.to(toKill.position, {
+            y: y + 40, duration: 0.7, stagger: 0.1, onComplete: () => {
+                game.scene.remove(toKill)
+            }
+        })
     }
     checkforjumptarget(player, x, y) {
         if (player == 0) {
@@ -254,7 +262,11 @@ class Game {
         }
     }
     move(target, kill, killedPawn) {
-        game.selectedPawn.position.set((250 + target.boardPos[2] * 50), (282), (250 + target.boardPos[0] * 50))
+        // game.selectedPawn.position.set((250 + target.boardPos[2] * 50), (282), (250 + target.boardPos[0] * 50))
+        TweenMax.to(game.selectedPawn.position, {
+            x: (250 + target.boardPos[2] * 50), z: (250 + target.boardPos[0] * 50), duration: 0.6, onComplete: () => {
+            }
+        })
         game.selectedPawn.boardPos = target.boardPos
         let data = {
             "name": game.selectedPawn.name,
@@ -291,7 +303,7 @@ class Game {
         if ((playerdata.player == 0 && target.boardPos[0] == 7) || (playerdata.player == 1 && target.boardPos[0] == 0)) {
             game.selectedPawn.rotation.x = Math.PI / 2;
             game.selectedPawn.isSuper = true;
-            data[0].super = true
+            data.super = true
         }
         data = JSON.stringify(playerdata.lastmove)
         console.log(data)
@@ -302,8 +314,8 @@ class Game {
         playerdata.lastmove = []
         $("#round").text("OPONENT ROUND")
     }
-    moveSuperPawn() {
-
+    moveSuperPawn(target, angle) {
+        console.log("SUPER - MOVE")
     }
     clearSelected() {
         if (playerdata.player == 0) {

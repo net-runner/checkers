@@ -2,11 +2,12 @@ console.log("NET ON")
 
 const url = "http://localhost:80"
 class Net {
+    socket;
     constructor() {
-        this.a = 100 // użycie zmiennych
-        this.b = 200
         //this.handleData()
-        this.sendData()
+        this.socket = new WebSocket("ws://localhost/connect")
+        // this.sendData()
+
     }
 
     handleData() {
@@ -114,12 +115,29 @@ class Net {
                     console.log("OK")
                     clearInterval(playerdata.inter)
                     playerdata.isPlayerRound = true
+
+                    if (parsd.lastmove[0].super) {
+                        let target = game.scene.getObjectByName(parsd.lastmove[0].name, true)
+                        target.isSuper = true
+                        target.rotation.x = Math.PI / 2;
+                    }
                     for (let i = 0; i < parsd.lastmove.length; i++) {
                         let target = game.scene.getObjectByName(parsd.lastmove[i].name, true);
-                        target.position.set((250 + parsd.lastmove[i].pos[2] * 50), (282), (250 + parsd.lastmove[i].pos[0] * 50))
+                        gsap.to(target.position, {
+                            x: (250 + parsd.lastmove[i].pos[2] * 50), z: (250 + parsd.lastmove[i].pos[0] * 50), duration: 0.6, onComplete: () => {
+                            }
+                        })
                         if (parsd.lastmove[i].killed != []) {
                             for (let j = 0; j < parsd.lastmove[i].killed.length; j++) {
-                                game.scene.remove(game.scene.getObjectByName(parsd.lastmove[i].killed[j], true))
+                                let toKill = game.scene.getObjectByName(parsd.lastmove[i].killed[j], true)
+                                console.log("XD---");
+                                console.log(toKill);
+                                gsap.to(toKill.position, {
+                                    y: 40, duration: 0.7, onComplete: () => {
+                                        game.scene.remove(toKill)
+                                        console.log("?_?")
+                                    }
+                                })
                                 playerdata.enemy_points++
                                 if (playerdata.enemy_points == 12) {
                                     ui.handleWinCondition(false)
@@ -128,12 +146,9 @@ class Net {
                         }
                         target.boardPos = parsd.lastmove[i].pos
                         target.name = parsd.lastmove[i].pos
+
                     }
 
-                    if (parsd.lastmove[0].super) {
-                        target.isSuper = true
-                        target.rotation.x = Math.PI / 2;
-                    }
 
                     $("#round").text("YOUR ROUND")
                 }
