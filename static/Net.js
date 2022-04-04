@@ -1,11 +1,11 @@
 console.log("NET ON")
 
-const url = "http://localhost:80"
+const url = " https://js-checkers.herokuapp.com/"
 class Net {
     socket;
     constructor() {
         //this.handleData()
-        this.socket = new WebSocket("ws://localhost/connect")
+        this.socket = new WebSocket("ws://js-checkers.herokuapp.com/connect")
         // this.sendData()
 
     }
